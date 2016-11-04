@@ -25,10 +25,13 @@ var prices = [
   {name: "giant", price: 25.00}];
 
 
-Pizza.prototype.addExtras = function(size, selectedToppings){
+Pizza.prototype.addExtras = function(size, selectedToppings, order){
   //sizes
   var sizeSelection = "small";
   var toppingPrice = 0;
+  if (order === "delivery"){
+    toppingPrice += 5;
+  }
   prices.forEach (function (price){
     if (price.name === size){
       sizeSelection = price.price;
@@ -38,7 +41,6 @@ Pizza.prototype.addExtras = function(size, selectedToppings){
   toppings.forEach(function (topping){
     selectedToppings.forEach(function (setopping){
       if (topping.name === setopping){
-        // console.log (setopping, " : ", topping.price);
         toppingPrice += parseFloat(topping.price);
         console.log(parseFloat(toppingPrice))
       }
@@ -56,35 +58,35 @@ $(document).ready(function (){
   $("#input").submit(function (event){
 
     event.preventDefault();
-
+//grab form info stuff
     var size = $("#size").val();
+    var orderOption = $("#order-type").val();
+    console.log(orderOption);
     var pizza = new Pizza (size);
-    $("#anotherPizza").fadeIn();
-
-    $(".order-number").text("Another ?");
 
     $("input:checkbox[name=toppings]:checked").each(function(){
       var topping = $(this).val();
       pizza.toppings.push(topping);
    });
 
-   pizza.addExtras(size, pizza.toppings);
+//update object
+   pizza.addExtras(size, pizza.toppings, orderOption);
+//push object to orders array
+
+
+//output stuff
+   $("#anotherPizza").fadeIn();
+   $(".order-number").text("Another ?");
    $(".order-options").hide();
    $(this).hide().slideDown(800);
-  
+   $("#order-type").val("0");
    $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
-
-
-
-
-
-
-
 
 
    });
    $("#completeOrder").click(function (){
     //  console.log("features work!!!")
+    // $('#myModal').modal()
    });
 
 });
