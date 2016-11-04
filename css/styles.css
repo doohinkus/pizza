@@ -33,8 +33,11 @@ h3, h2 {
   margin-top:1em;
 }
 .modal-content{
-  
+
 }
-/*#completeOrder{
+.pizza-details{
+  margin-left: 3em;
+}
+#completeOrder{
   display: none;
-}*/
+}

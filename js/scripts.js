@@ -1,14 +1,10 @@
-function Customer (name, address) {
-  this.address = address,
-  this.bill = 0,
-  this.pizzas = [],
-  this.orderType = "pick-up"
-}
 
+var pizzas = [];
 function Pizza (size){
   this.toppings = [],
   this.size = size,
-  this.price = 0
+  this.price = 0,
+  this.fullfillment = "pick-up"
 }
 var toppings = [
   {name: "mushrooms", price: 1.00 },
@@ -61,32 +57,54 @@ $(document).ready(function (){
 //grab form info stuff
     var size = $("#size").val();
     var orderOption = $("#order-type").val();
-    console.log(orderOption);
+
     var pizza = new Pizza (size);
 
     $("input:checkbox[name=toppings]:checked").each(function(){
       var topping = $(this).val();
+      pizza.fulfillment = orderOption;
       pizza.toppings.push(topping);
    });
 
 //update object
    pizza.addExtras(size, pizza.toppings, orderOption);
-//push object to orders array
-
-
+//push object to pizzas array
+  pizzas.push(pizza);
+  // console.log (pizza, " ", pizzas.length)
 //output stuff
    $("#anotherPizza").fadeIn();
+   $("#completeOrder").fadeIn();
    $(".order-number").text("Another ?");
    $(".order-options").hide();
    $(this).hide().slideDown(800);
    $("#order-type").val("0");
    $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
+   $("input:checkbox[name=toppings]:checked").each(function(){
+     $(this).prop( "checked", false );
+
+  });
+
 
    });
    $("#completeOrder").click(function (){
     //  console.log("features work!!!")
     // $('#myModal').modal()
+    pizzas.forEach(function (pizza){
+      // $(".pizza").text(pizza.size+ " pizza");
+      $(".modal-body").append('<div class="pizza-details"><h2 class="pizza">'+
+                      pizza.size + 'pizza</h2><ul class="toppings"></ul><p class="order">' +
+                      pizza.fullfillment + '</p><p class="cost">$' + pizza.price.toFixed(2) + '</p></div>');
+      pizza.toppings.forEach(function (topping){
+        $(".toppings").append("<li>"+topping+"</li>");
+      });
+      $('#myModal').modal();
+      $('#myModal').on('hide.bs.dropdown', function () {
+  // do something
+  console.log("modal closed!!!")
+      });
+
+    });
    });
 
 });
