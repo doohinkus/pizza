@@ -33,6 +33,7 @@ Pizza.prototype.addExtras = function(size, selectedToppings){
       sizeSelection = price.price;
     }
   });
+  //toppings gotta be a better way to get the topping price
   toppings.forEach(function (topping){
     selectedToppings.forEach(function (setopping){
       if (topping.name === setopping){
@@ -42,8 +43,9 @@ Pizza.prototype.addExtras = function(size, selectedToppings){
       }
     });
   });
+
   toppingPrice += sizeSelection;
-  console.log(toppingPrice);
+
   return this.price = toppingPrice;
 }
 
@@ -59,10 +61,10 @@ $(document).ready(function (){
       pizza.toppings.push(topping);
    });
 
-  console.log(pizza.toppings);
-
-    console.log(pizza.size, pizza.addExtras(size, pizza.toppings));
-    $("#output").text(pizza.size, pizza.price);
+   pizza.addExtras(size, pizza.toppings);
+  //  console.log("price: ", pizza.price);
+    // console.log(pizza.size, pizza.addExtras(size, pizza.toppings));
+    $("#output").text(pizza.size + " $" + pizza.price.toFixed(2));
 
 
 
