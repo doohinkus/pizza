@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Ultra');
 body {
   background-image: url(../img/pizza.jpg);
+  font-family: 'Ultra', serif;
+  font-size: 13pt;
 }
 .col-md-offset-3{
   background-color: rgba(255, 255, 255, 0.7);;
@@ -7,6 +10,9 @@ body {
 }
 .preheader{
   background-color: #333;
+}
+.btn {
+  font-size: 12pt;
 }
 #output{
   font-size: 13pt;

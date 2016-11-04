@@ -1,7 +1,8 @@
 function Customer (name, address) {
   this.address = address,
-  this.bill = 0;
-  this.pizzas = [];
+  this.bill = 0,
+  this.pizzas = [],
+  this.delivery = 0;
 }
 
 function Pizza (size){
@@ -62,9 +63,7 @@ $(document).ready(function (){
    });
 
    pizza.addExtras(size, pizza.toppings);
-  //  console.log("price: ", pizza.price);
-    // console.log(pizza.size, pizza.addExtras(size, pizza.toppings));
-    $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
+   $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
 
 
