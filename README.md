@@ -11,16 +11,15 @@ _A web application that lets a user order a custom pizza._
 
 ## Specifications:
 
-* _Program only accepts numbers between 1 and 3999_.
-* _Program can take the user's number and output a list that counts up to that number._
-* _Program can take the user's number and output a list that counts up to that number and replaces numbers divisible by 3 with the word "ping"._
-* _Program can take the user's number and output a list that counts up to that number and replaces numbers divisible by 5 with the word "pong"._
-* _Program can take the user's number and output a list that counts up to that number and replaces numbers divisible by 3 and 5 with the words "ping pong"._
+* _Program lets person choose size of pizza_.
+* _Program let person choose toppings._
+* _Program lets person order more than one pizza._
+* _Program returns the person's choices and calculates their grand total._
 ## Setup/Installation Requirements
 
 * _Clone repository._
 * _Double click "index.html"_
-* _Or view the [Ping Pong](https://doohinkus.github.io/pingPong/) now._
+* _Or view the [Pizza](https://doohinkus.github.io/pizza/) now._
 
 
 _If "index.html" fails to open when double clicked, then drag the file into your favorite browser._
@@ -35,7 +34,7 @@ _If you have any issue with this code, please contact me._
 
 ## Technologies Used
 
-_HTML, CSS, and Bootstrap._
+_HTML, CSS, JQUERY, and Bootstrap. This is an object oriented approach to the problem._
 
 ### License
 
