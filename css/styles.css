@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 body {
   background-image: url(../img/pizza.jpg);
   font-family: 'Ultra', serif;
   font-size: 13pt;
 }
-.col-md-offset-3{
+.col-md-offset-2{
   background-color: rgba(255, 255, 255, 0.7);;
   padding:1em;
+  border-radius: 7px;
+  margin-top: 1em;
 }
 .preheader{
-  background-color: #333;
+  font-family: 'Amatic SC', cursive;
+  background-color: #dd1021;
+  color: #fff;
+  font-size: 24pt;
+  text-align: center;
+
+
 }
 .btn {
   font-size: 12pt;
