@@ -1,4 +1,14 @@
-/*input{
-  display: block;
-  margin: 1em;
-}*/
+body {
+  background-image: url(../img/pizza.jpg);
+}
+.col-md-offset-3{
+  background-color: rgba(255, 255, 255, 0.7);;
+  padding:1em;
+}
+.preheader{
+  background-color: #333;
+}
+#output{
+  font-size: 13pt;
+  margin-top:1em;
+}

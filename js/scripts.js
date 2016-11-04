@@ -64,7 +64,7 @@ $(document).ready(function (){
    pizza.addExtras(size, pizza.toppings);
   //  console.log("price: ", pizza.price);
     // console.log(pizza.size, pizza.addExtras(size, pizza.toppings));
-    $("#output").text(pizza.size + " $" + pizza.price.toFixed(2));
+    $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
 
 
