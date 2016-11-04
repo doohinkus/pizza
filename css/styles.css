@@ -5,6 +5,9 @@ body {
   font-family: 'Ultra', serif;
   font-size: 13pt;
 }
+h3, h2 {
+  text-align: center;
+}
 .col-md-offset-2{
   background-color: rgba(255, 255, 255, 0.7);;
   padding:1em;
@@ -21,9 +24,14 @@ body {
 
 }
 .btn {
-  font-size: 12pt;
+  font-size: 13pt;
+  font-family: 'Amatic SC', cursive;
 }
 #output{
+  /*display: none;*/
   font-size: 13pt;
   margin-top:1em;
 }
+/*#completeOrder{
+  display: none;
+}*/

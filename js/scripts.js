@@ -2,7 +2,7 @@ function Customer (name, address) {
   this.address = address,
   this.bill = 0,
   this.pizzas = [],
-  this.delivery = 0;
+  this.orderType = "pick-up"
 }
 
 function Pizza (size){
@@ -52,10 +52,16 @@ Pizza.prototype.addExtras = function(size, selectedToppings){
 
 $(document).ready(function (){
 
+
   $("#input").submit(function (event){
+
     event.preventDefault();
+
     var size = $("#size").val();
     var pizza = new Pizza (size);
+    $("#anotherPizza").fadeIn();
+
+    $(".order-number").text("Another ?");
 
     $("input:checkbox[name=toppings]:checked").each(function(){
       var topping = $(this).val();
@@ -63,10 +69,22 @@ $(document).ready(function (){
    });
 
    pizza.addExtras(size, pizza.toppings);
+   $(".order-options").hide();
+   $(this).hide().slideDown(800);
+  
    $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
 
 
-  })
+
+
+
+
+
+
+   });
+   $("#completeOrder").click(function (){
+    //  console.log("features work!!!")
+   });
 
 });
