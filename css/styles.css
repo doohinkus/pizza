@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 body {
   background-image: url(../img/pizza.jpg);
   font-family: 'Ultra', serif;
   font-size: 13pt;
+
+
 }
 h3, h2 {
   text-align: center;
+  color:#333;
+  font-family: 'Ultra', serif;
 }
 .col-md-offset-2{
   background-color: rgba(255, 255, 255, 0.7);;
@@ -33,10 +38,11 @@ h3, h2 {
   margin-top:1em;
 }
 .modal-content{
-
+  /*font-family: 'Amatic SC', cursive;*/
 }
 .pizza-details{
-  margin-left: 3em;
+  margin: auto;
+  width: 40%;
 }
 #completeOrder{
   display: none;

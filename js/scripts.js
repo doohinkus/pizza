@@ -6,6 +6,7 @@ function Pizza (size){
   this.price = 0,
   this.fullfillment = "pick-up"
 }
+
 var toppings = [
   {name: "mushrooms", price: 1.00 },
   {name: "pineapple", price: 1.25 },
@@ -48,6 +49,30 @@ Pizza.prototype.addExtras = function(size, selectedToppings, order){
   return this.price = toppingPrice;
 }
 
+var grandTotal = function (pizzas){
+  var total = 0;
+  pizzas.forEach(function (pizza){
+  total += pizza.price;
+
+  });
+  return total;
+
+
+}
+
+function cleanUpForm(){
+  $("#anotherPizza").fadeIn();
+  $("#completeOrder").fadeIn();
+  $(".order-number").text("Would you like another pizza?");
+  $(".order-options").hide();
+  $(".order").hide().slideDown(800);
+  $("#order-type").val("0");
+  $("input:checkbox[name=toppings]:checked").each(function(){
+    $(this).prop( "checked", false );
+ });
+
+}
+
 $(document).ready(function (){
 
 
@@ -57,7 +82,6 @@ $(document).ready(function (){
 //grab form info stuff
     var size = $("#size").val();
     var orderOption = $("#order-type").val();
-
     var pizza = new Pizza (size);
 
     $("input:checkbox[name=toppings]:checked").each(function(){
@@ -65,46 +89,31 @@ $(document).ready(function (){
       pizza.fulfillment = orderOption;
       pizza.toppings.push(topping);
    });
-
 //update object
    pizza.addExtras(size, pizza.toppings, orderOption);
 //push object to pizzas array
-  pizzas.push(pizza);
-  // console.log (pizza, " ", pizzas.length)
-//output stuff
-   $("#anotherPizza").fadeIn();
-   $("#completeOrder").fadeIn();
-   $(".order-number").text("Another ?");
-   $(".order-options").hide();
-   $(this).hide().slideDown(800);
-   $("#order-type").val("0");
-   $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
+   pizzas.push(pizza);
 
-   $("input:checkbox[name=toppings]:checked").each(function(){
-     $(this).prop( "checked", false );
-
-  });
-
+  cleanUpForm();
+  //output stuff
+  $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
    });
+
    $("#completeOrder").click(function (){
-    //  console.log("features work!!!")
-    // $('#myModal').modal()
+
     pizzas.forEach(function (pizza){
-      // $(".pizza").text(pizza.size+ " pizza");
       $(".modal-body").append('<div class="pizza-details"><h2 class="pizza">'+
-                      pizza.size + 'pizza</h2><ul class="toppings"></ul><p class="order">' +
-                      pizza.fullfillment + '</p><p class="cost">$' + pizza.price.toFixed(2) + '</p></div>');
+                      pizza.size + ' pizza</h2>Toppings:<ul class="toppings"></ul><p class="cost">$' + pizza.price.toFixed(2) + '</p></div>');
       pizza.toppings.forEach(function (topping){
         $(".toppings").append("<li>"+topping+"</li>");
       });
+      });
+      $(".modal-body").append("<h2> Grand Total: $" + grandTotal(pizzas).toFixed(2) + "</h2>");
       $('#myModal').modal();
       $('#myModal').on('hide.bs.modal', function () {
-  // do something
-      
-      location.reload();
-      });
 
+      location.reload();
     });
    });
 
