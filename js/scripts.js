@@ -4,48 +4,65 @@ function Customer (name, address) {
   this.pizzas = [];
 }
 
-function Pizza (toppings, size){
-  this.toppings = toppings,
+function Pizza (size){
+  this.toppings = [],
   this.size = size,
   this.price = 0
 }
-//toppings
-var mushrooms = {name: "mushrooms", price: 1.00 };
-var pineapple = {name: "pineapple", price: 1.25 };
-var pepperoni = {name: "pepperoni", price: 2.00 };
-var ham = {name: "ham", price: 2.25 };
-var provolone = {name: "provolone", price: 1.50 };
-var anchovies = {name: "mushrooms", price: 1.00 };
+var toppings = [
+  {name: "mushrooms", price: 1.00 },
+  {name: "pineapple", price: 1.25 },
+  {name: "pepperoni", price: 2.00 },
+  {name: "ham", price: 2.25 },
+  {name: "provolone", price: 1.50 },
+  {name: "mushrooms", price: 1.00 }];
 
 var prices = [
-    {name: "small", price: 10.00},
-    {name: "medium",price: 15.00},
-    {name: "large", price: 20.00},
-    {name: "giant", price: 25.00}];
+  {name: "small", price: 10.00},
+  {name: "medium", price: 15.00},
+  {name: "large", price: 20.00},
+  {name: "giant", price: 25.00}];
 
 
-Pizza.prototype.addExtras = function(size){
+Pizza.prototype.addExtras = function(size, selectedToppings){
   //sizes
   var sizeSelection = "small";
+  var toppingPrice = 0;
   prices.forEach (function (price){
     if (price.name === size){
       sizeSelection = price.price;
     }
-
   });
-  return this.price += parseFloat(sizeSelection);
+  toppings.forEach(function (topping){
+    selectedToppings.forEach(function (setopping){
+      if (topping.name === setopping){
+        // console.log (setopping, " : ", topping.price);
+        toppingPrice += parseFloat(topping.price);
+        console.log(parseFloat(toppingPrice))
+      }
+    });
+  });
+  toppingPrice += sizeSelection;
+  console.log(toppingPrice);
+  return this.price = toppingPrice;
 }
-
 
 $(document).ready(function (){
 
   $("#input").submit(function (event){
     event.preventDefault();
     var size = $("#size").val();
-    var pizza = new Pizza ("something", size);
+    var pizza = new Pizza (size);
 
-    console.log(pizza.size, " ", pizza.addExtras(size));
-    $("#output").text(pizza.size);
+    $("input:checkbox[name=toppings]:checked").each(function(){
+      var topping = $(this).val();
+      pizza.toppings.push(topping);
+   });
+
+  console.log(pizza.toppings);
+
+    console.log(pizza.size, pizza.addExtras(size, pizza.toppings));
+    $("#output").text(pizza.size, pizza.price);
 
 
 
