@@ -99,9 +99,10 @@ $(document).ready(function (){
         $(".toppings").append("<li>"+topping+"</li>");
       });
       $('#myModal').modal();
-      $('#myModal').on('hide.bs.dropdown', function () {
+      $('#myModal').on('hide.bs.modal', function () {
   // do something
-  console.log("modal closed!!!")
+      
+      location.reload();
       });
 
     });
