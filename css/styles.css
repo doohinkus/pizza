@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 body {
   background-image: url(../img/pizza.jpg);
   font-family: 'Ultra', serif;
@@ -10,6 +9,12 @@ body {
 }
 img {
   width: 150px;
+}
+span.amount{
+  display: block;
+}
+.smallpizza{
+  width: 75px;
 }
 .center{
   text-align: center;

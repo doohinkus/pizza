@@ -26,6 +26,7 @@ Pizza.prototype.addExtras = function(size, selectedToppings, order){
   //sizes
   var sizeSelection = "small";
   var toppingPrice = 0;
+
   if (order === "delivery"){
     toppingPrice += 5;
   }
@@ -42,6 +43,7 @@ Pizza.prototype.addExtras = function(size, selectedToppings, order){
         console.log(parseFloat(toppingPrice))
       }
     });
+
   });
 
   toppingPrice += sizeSelection;
@@ -71,7 +73,14 @@ function cleanUpForm(){
   $("input:checkbox[name=toppings]").each(function(){
     $(this).prop( "checked", false );
  });
+}
 
+function noToppingsMessage (pizza){
+  var noToppings = "";
+  if (pizza.length < 1){
+    noToppings = "no toppings";
+  }
+  return noToppings;
 }
 
 $(document).ready(function (){
@@ -90,32 +99,28 @@ $(document).ready(function (){
       var topping = $(this).val();
       pizza.fulfillment = orderOption;
       pizza.toppings.push(topping);
-      // console.log("topping: "+topping+ "");
    });
    cleanUpForm();
 //update object
    pizza.addExtras(size, pizza.toppings, orderOption);
-  //  console.log(pizzas)
 //push object to pizzas array
    pizzas.push(pizza);
 
 
   //output stuff
-  $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
+  var noToppings = noToppingsMessage(pizza.toppings);
+  $(".amount").text("Your " + pizza.size + " pizza with " + noToppings + pizza.toppings + " is $" + pizza.price.toFixed(2));
+  $("#output").prepend("<img class='smallpizza' src ='" + 'img/pizza-png.png' + "'>");
 
    });
 
    $("#completeOrder").click(function (){
 
     pizzas.forEach(function (pizza){
-      console.log (pizza.size, " ", pizza.price, " ", pizza.toppings);
-      $(".modal-body").append('<div class="pizza-details"><h2 class="pizza">'+
-                      pizza.size + ' pizza</h2><p class="cost">$' + pizza.price.toFixed(2) + "</p><p>Toppings: " + pizza.toppings +'</p></div>');
+      var noToppings = noToppingsMessage(pizza.toppings);
 
-      // pizza.toppings.forEach(function (topping){
-      //   console.log(toppings)
-      //   $(".toppings").append("<li>"+topping+"</li>");
-      // });
+      $(".modal-body").append('<div class="pizza-details"><h2 class="pizza">'+
+                      pizza.size + ' pizza</h2><p class="cost">$' + pizza.price.toFixed(2) + "</p><p>Toppings: " +  noToppings + pizza.toppings +'</p></div>');
       });
 
       $(".modal-body").append("<h2> Grand Total: $" + grandTotal(pizzas).toFixed(2) + "</h2>");
