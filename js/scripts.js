@@ -67,7 +67,8 @@ function cleanUpForm(){
   $(".order-options").hide();
   $(".order").hide().slideDown(800);
   $("#order-type").val("0");
-  $("input:checkbox[name=toppings]:checked").each(function(){
+  //rewrite form
+  $("input:checkbox[name=toppings]").each(function(){
     $(this).prop( "checked", false );
  });
 
@@ -79,6 +80,7 @@ $(document).ready(function (){
   $("#input").submit(function (event){
 
     event.preventDefault();
+
 //grab form info stuff
     var size = $("#size").val();
     var orderOption = $("#order-type").val();
@@ -88,13 +90,16 @@ $(document).ready(function (){
       var topping = $(this).val();
       pizza.fulfillment = orderOption;
       pizza.toppings.push(topping);
+      // console.log("topping: "+topping+ "");
    });
+   cleanUpForm();
 //update object
    pizza.addExtras(size, pizza.toppings, orderOption);
+  //  console.log(pizzas)
 //push object to pizzas array
    pizzas.push(pizza);
 
-  cleanUpForm();
+
   //output stuff
   $(".amount").text("Your " + pizza.size + " pizza is $" + pizza.price.toFixed(2));
 
@@ -103,12 +108,16 @@ $(document).ready(function (){
    $("#completeOrder").click(function (){
 
     pizzas.forEach(function (pizza){
+      console.log (pizza.size, " ", pizza.price, " ", pizza.toppings);
       $(".modal-body").append('<div class="pizza-details"><h2 class="pizza">'+
-                      pizza.size + ' pizza</h2>Toppings:<ul class="toppings"></ul><p class="cost">$' + pizza.price.toFixed(2) + '</p></div>');
-      pizza.toppings.forEach(function (topping){
-        $(".toppings").append("<li>"+topping+"</li>");
+                      pizza.size + ' pizza</h2><p class="cost">$' + pizza.price.toFixed(2) + "</p><p>Toppings: " + pizza.toppings +'</p></div>');
+
+      // pizza.toppings.forEach(function (topping){
+      //   console.log(toppings)
+      //   $(".toppings").append("<li>"+topping+"</li>");
+      // });
       });
-      });
+
       $(".modal-body").append("<h2> Grand Total: $" + grandTotal(pizzas).toFixed(2) + "</h2>");
       $('#myModal').modal();
       $('#myModal').on('hide.bs.modal', function () {
